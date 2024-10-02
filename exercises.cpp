@@ -179,6 +179,22 @@ void removeDuplicates(std::vector<int>& vec) {
 }
 
 /**
+ * @brief Uses a lambda function with the `std::for_each` algorithm to increment each element in a vector.
+ * 
+ * Lambdas are critical in modern C++ for writing compact, inline functions that are passed to algorithms 
+ * like `std::for_each`. This problem focuses on enhancing the readability and performance of your code, 
+ * a key topic in your study guide.
+ * 
+ * @param vec A vector of integers.
+ */
+void incrementWithLambda(std::vector<int>& vec) {
+    std::for_each(vec.begin(), vec.end(), [](int& j) {  // Pass each element by reference
+        j += 1;  // Modify the element in place
+    });
+
+}
+
+/**
  * @brief Finds both the minimum and maximum values in a vector of integers.
  * 
  * Understanding how to find the minimum and maximum values in a vector is essential for optimizing 
@@ -252,6 +268,26 @@ int main() {
     std::cout << "Test 6: This is in reference to testing removeDuplicates with std::unique and vec.erase()" << std::endl;
     removeDuplicates(damned);
 
+    damned.push_back(4);
+    damned.push_back(77);
+    damned.push_back(44);
+    damned.push_back(33);
+    damned.push_back(44);
+    damned.push_back(33);
+
+    std::cout << "Vector before lambda utilization" << std::endl;
+    for (auto j : damned) {
+    std::cout << j << " ";  // Print each element (j) instead of the vector (damned)
+    }
+    std::cout << std::endl;  // Proper usage of std::endl
+
+    incrementWithLambda(damned);
+
+    std::cout << "Vector after lambda utilization" << std::endl;
+    for (auto j : damned) {
+    std::cout << j << " ";  // Print each element (j) again
+    }   
+    std::cout << std::endl;  // Proper usage of std::endl
 
 
     return 0;
