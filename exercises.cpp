@@ -211,6 +211,10 @@ std::pair<int, int> findMinMax(const std::vector<int>& vec) {
  */
 std::string intToString(int num) {
 
+    // We will leverage the std::to_string method() 
+
+    return std::to_string(num);
+
 }
 
 
