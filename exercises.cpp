@@ -8,6 +8,12 @@
 #include <set>
 #include <vector>
 #include <unordered_map> 
+#include <istream>
+#include <ostream>
+#include <fstream>  // Needed for std::ifstream
+#include <iostream> // For std::cerr and std::cout
+#include <string> 
+#include <utility>
 
 
 /**
@@ -124,6 +130,90 @@ int countOccurrences(const std::unordered_map<std::string, int>& map, const std:
 
 }
 
+/**
+ * @brief Reads and returns the first line from a text file.
+ * 
+ * File I/O operations, such as reading from a file using streams, are vital for handling external 
+ * data, which is heavily emphasized in the study guide. Knowing how to perform basic I/O operations 
+ * in C++ will help with tasks like benchmarking and profiling programs that rely on external data.
+ * 
+ * @param filename The name of the file to read from.
+ * @return The first line of text from the file.
+ */
+std::string readFirstLineFromFile(const std::string& filename) {
+    std::ifstream inFile(filename);
+    std::string temp;
+
+    if (inFile.is_open()) {
+            std::getline(inFile, temp);
+        while (std::getline(inFile, temp)) {
+            std::cout << temp << std::endl;
+        }
+    }
+    inFile.close();
+    return temp;
+}
+
+/**
+ * @brief Removes duplicate elements from a vector of integers.
+ * 
+ * Removing duplicates from a vector leverages C++ standard algorithms like `std::unique`, which is 
+ * a key topic in your study guide under vector operations and algorithms. This method enhances memory 
+ * and performance efficiency by eliminating unnecessary elements.
+ * 
+ * @param vec A reference to the vector of integers.
+ */
+void removeDuplicates(std::vector<int>& vec) {
+    // We will leverage the STD library and the function unique to simplify this process.
+    std::sort(vec.begin(), vec.end());
+    auto j = std::unique(vec.begin(), vec.end());
+
+    // Remove empty elements
+    vec.erase(j, vec.end());
+
+    // Displaying for debugging purposes
+    std::cout << "Printing the vector after removing duplicates" << std::endl;
+    for (const auto& j : vec) {
+        std::cout << j << " " << std::endl;
+    }
+}
+
+/**
+ * @brief Finds both the minimum and maximum values in a vector of integers.
+ * 
+ * Understanding how to find the minimum and maximum values in a vector is essential for optimizing 
+ * performance when dealing with large datasets. This method utilizes standard algorithms, which are 
+ * important for reducing runtime in complex operations.
+ * 
+ * @param vec A vector of integers.
+ * @return A pair where first is the minimum and second is the maximum value.
+ */
+std::pair<int, int> findMinMax(const std::vector<int>& vec) {
+    std::vector<int> sortedVec = vec;
+    std::sort(sortedVec.begin(), sortedVec.end());
+
+    std::pair<int, int> ret;
+    ret.first = vec.front();
+    ret.second = vec.back();
+
+    return ret;
+}
+
+/**
+ * @brief Converts an integer to a std::string using string streams.
+ * 
+ * This problem addresses the importance of converting data types, which is covered in the study guide 
+ * under strings and data manipulation. Converting integers to strings is a fundamental operation when 
+ * interfacing with input/output streams or generating formatted outputs.
+ * 
+ * @param num The integer to convert.
+ * @return The integer as a string.
+ */
+std::string intToString(int num) {
+
+}
+
+
 
 
 int main() {
@@ -146,6 +236,17 @@ int main() {
     // Test case 5: Sentence with mixed casing
     std::string sentence5 = "Apple apple banana";
     std::cout << "Test 5: " << countUniqueWords(sentence5) << std::endl; // Expected output: 2
+
+    std::vector<int> damned;
+    damned.push_back(4);
+    damned.push_back(77);
+    damned.push_back(44);
+    damned.push_back(33);
+    damned.push_back(44);
+    damned.push_back(33);
+
+    std::cout << "Test 6: This is in reference to testing removeDuplicates with std::unique and vec.erase()" << std::endl;
+    removeDuplicates(damned);
 
 
 
