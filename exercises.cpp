@@ -120,6 +120,7 @@ void sortVector(std::vector<int>& vec) {
  * @return The number of occurrences of the specified key.
  */
 int countOccurrences(const std::unordered_map<std::string, int>& map, const std::string& key) {
+    return map.count(key);
 
 }
 
